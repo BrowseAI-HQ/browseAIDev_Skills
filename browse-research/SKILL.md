@@ -1,3 +1,8 @@
+---
+name: browse-research
+description: Evidence-backed web research with citations and confidence scores. Use when the user needs researched, verified answers backed by real sources — not LLM hallucinations.
+---
+
 # BrowseAI Dev — Evidence-Backed Research
 
 Use this skill when the user needs researched, cited answers backed by real web sources — not LLM hallucinations.
