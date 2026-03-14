@@ -1,3 +1,8 @@
+---
+name: browse-sessions
+description: Deep multi-query research with persistent knowledge accumulation. Use when the user is researching a topic across multiple questions and wants each query to build on prior findings.
+---
+
 # BrowseAI Dev — Research Sessions
 
 Use this skill when the user is doing deep, multi-query research on a topic. Sessions persist knowledge across queries — each new question builds on prior findings.

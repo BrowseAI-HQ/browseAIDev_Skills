@@ -1,3 +1,8 @@
+---
+name: browse-fact-check
+description: Fact-check claims and detect hallucinations by comparing raw LLM answers against evidence-backed research. Use when the user wants to verify claims or check accuracy.
+---
+
 # BrowseAI Dev — Fact Check & Hallucination Detection
 
 Use this skill when the user wants to verify claims, detect hallucinations, or compare what an LLM says vs what evidence actually shows.

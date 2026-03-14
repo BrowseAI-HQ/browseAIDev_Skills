@@ -1,3 +1,8 @@
+---
+name: browse-extract
+description: Extract structured claims, quotes, and knowledge from any URL. Use when the user shares a link and wants key points, pricing, specs, or a focused summary.
+---
+
 # BrowseAI Dev — Structured Data Extraction
 
 Use this skill when the user has a URL and wants structured claims, quotes, or knowledge extracted from it.
