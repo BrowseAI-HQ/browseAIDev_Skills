@@ -22,9 +22,9 @@ Install BrowseAI Dev MCP server:
 ```json
 {
   "mcpServers": {
-    "browse-ai": {
+    "browseai-dev": {
       "command": "npx",
-      "args": ["-y", "browse-ai"]
+      "args": ["-y", "browseai-dev"]
     }
   }
 }
@@ -98,5 +98,5 @@ If contradictions are found, present them:
 
 - [BrowseAI Dev](https://browseai.dev)
 - [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browse-ai)
+- [MCP Server](https://www.npmjs.com/package/browseai-dev)
 - [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)

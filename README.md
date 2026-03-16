@@ -28,9 +28,9 @@ These skills use BrowseAI Dev's MCP server. Add it to your MCP config:
 ```json
 {
   "mcpServers": {
-    "browse-ai": {
+    "browseai-dev": {
       "command": "npx",
-      "args": ["-y", "browse-ai"]
+      "args": ["-y", "browseai-dev"]
     }
   }
 }
@@ -41,9 +41,9 @@ For session features (persistent research memory, sharing, forking), set a Brows
 ```json
 {
   "mcpServers": {
-    "browse-ai": {
+    "browseai-dev": {
       "command": "npx",
-      "args": ["-y", "browse-ai"],
+      "args": ["-y", "browseai-dev"],
       "env": {
         "BROWSE_API_KEY": "bai_xxx"
       }
@@ -83,7 +83,7 @@ Open-source research infrastructure for AI agents. Every answer goes through a v
 7. **Domain Authority** — 10,000+ domains scored with Bayesian dynamic blending
 8. **Confidence Score** — 7-factor evidence-based score (not LLM self-assessed)
 
-Available as [MCP server](https://www.npmjs.com/package/browse-ai), [REST API](https://browseai.dev/docs), and [Python SDK](https://pypi.org/project/browseai/).
+Available as [MCP server](https://www.npmjs.com/package/browseai-dev), [REST API](https://browseai.dev/docs), and [Python SDK](https://pypi.org/project/browseaidev/).
 
 ## Contributing
 
@@ -99,8 +99,8 @@ Want to add a new skill? PRs welcome!
 - [BrowseAI Dev](https://browseai.dev)
 - [Documentation](https://browseai.dev/docs)
 - [Main Repo](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
-- [MCP Server (npm)](https://www.npmjs.com/package/browse-ai)
-- [Python SDK (PyPI)](https://pypi.org/project/browseai/)
+- [MCP Server (npm)](https://www.npmjs.com/package/browseai-dev)
+- [Python SDK (PyPI)](https://pypi.org/project/browseaidev/)
 - [Discord](https://discord.gg/ubAuT4YQsT)
 
 ## License

@@ -22,9 +22,9 @@ Use this skill when the user is doing deep, multi-query research on a topic. Ses
 ```json
 {
   "mcpServers": {
-    "browse-ai": {
+    "browseai-dev": {
       "command": "npx",
-      "args": ["-y", "browse-ai"],
+      "args": ["-y", "browseai-dev"],
       "env": {
         "BROWSE_API_KEY": "bai_xxx"
       }
@@ -139,5 +139,5 @@ Each successive query benefits from prior knowledge — the session remembers wh
 
 - [BrowseAI Dev](https://browseai.dev)
 - [Documentation](https://browseai.dev/docs)
-- [MCP Server](https://www.npmjs.com/package/browse-ai)
+- [MCP Server](https://www.npmjs.com/package/browseai-dev)
 - [GitHub](https://github.com/BrowseAI-HQ/BrowseAI-Dev)
