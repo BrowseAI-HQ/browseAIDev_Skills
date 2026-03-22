@@ -20,6 +20,10 @@ Or manually copy any skill folder into your agent's skills directory (e.g., `~/.
 | [browse-fact-check](browse-fact-check/) | Compare raw LLM vs evidence-backed answers, verify claims | `browse_compare` |
 | [browse-extract](browse-extract/) | Extract structured claims and quotes from any URL | `browse_extract` |
 | [browse-sessions](browse-sessions/) | Multi-query research with persistent knowledge accumulation | `browse_session_*` |
+| [browse-deep-dive](browse-deep-dive/) | Multi-step agentic research with reasoning chains and gap analysis | `browse_answer` (deep) |
+| [browse-compare-claims](browse-compare-claims/) | Settle factual disputes — evidence-backed vs raw LLM side-by-side | `browse_compare` |
+| [browse-monitor](browse-monitor/) | Track evolving topics over time, diff against prior knowledge | `browse_session_*` |
+| [browse-cite](browse-cite/) | Generate properly formatted citations (APA/MLA) with authority scores | `browse_answer` (thorough) |
 
 ## Prerequisites
 
