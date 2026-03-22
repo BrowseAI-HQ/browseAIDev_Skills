@@ -24,6 +24,7 @@ Or manually copy any skill folder into your agent's skills directory (e.g., `~/.
 | [browse-compare-claims](browse-compare-claims/) | Settle factual disputes — evidence-backed vs raw LLM side-by-side | `browse_compare` |
 | [browse-monitor](browse-monitor/) | Track evolving topics over time, diff against prior knowledge | `browse_session_*` |
 | [browse-cite](browse-cite/) | Generate properly formatted citations (APA/MLA) with authority scores | `browse_answer` (thorough) |
+| [browse-anti-hallucination](browse-anti-hallucination/) | Reduce LLM hallucinations through evidence-backed prompt engineering | `browse_answer` + `browse_compare` |
 
 ## Prerequisites
 
