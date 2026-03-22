@@ -279,6 +279,71 @@ Answer the user's question following ALL rules above.
 6. Present verified answer with citations and confidence score
 ```
 
+## Automated Hardening: `browse_harden` Tool
+
+Instead of manually applying techniques, use the `browse_harden` MCP tool to automatically harden any prompt:
+
+```
+browse_harden({
+  prompt: "What are the side effects of metformin?",
+  verify: true
+})
+```
+
+The tool uses an LLM to:
+1. **Detect intent** — factual question, document QA, content generation, agent pipeline, etc.
+2. **Identify hallucination risks** — "may fabricate statistics", "may invent source URLs", etc.
+3. **Select techniques** — picks 2-4 most relevant from the 7 techniques above
+4. **Rewrite the prompt** — adds natural grounding cues without making it robotic
+5. **Return hardened system + user prompts** — ready to use with any LLM
+
+Response includes:
+- `systemPrompt`: Hardened system prompt with technique instructions
+- `userPrompt`: Rewritten user prompt with grounding cues
+- `intent`: Auto-detected intent type
+- `techniques`: Which techniques were applied
+- `verification`: Optional evidence-backed verification (when `verify: true`)
+
+### With Context (Document QA)
+
+```
+browse_harden({
+  prompt: "What does the report say about Q4 revenue?",
+  context: "... full document text ...",
+  verify: false
+})
+```
+
+### For Agent Pipelines
+
+```
+browse_harden({
+  prompt: "You are a medical research assistant. Answer questions about drug interactions.",
+  intent: "agent_pipeline"
+})
+```
+
+### API Endpoint
+
+```bash
+curl -X POST https://browseai.dev/api/browse/harden \
+  -H "X-API-Key: bai_xxx" \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "What caused the 2008 financial crisis?", "verify": true}'
+```
+
+### Python SDK
+
+```python
+from browseaidev import BrowseAI
+
+client = BrowseAI(api_key="bai_xxx")
+result = client.harden("What caused the 2008 financial crisis?", verify=True)
+print(result.system_prompt)  # Hardened system prompt
+print(result.user_prompt)    # Rewritten user prompt
+print(result.techniques)     # ['uncertainty_permission', 'chain_of_verification', 'source_attribution']
+```
+
 ## Common Anti-Patterns to Avoid
 
 | Anti-Pattern | Why It Fails | Instead Do |
