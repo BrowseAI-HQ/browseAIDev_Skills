@@ -24,7 +24,7 @@ Or manually copy any skill folder into your agent's skills directory (e.g., `~/.
 | [browse-compare-claims](browse-compare-claims/) | Settle factual disputes — evidence-backed vs raw LLM side-by-side | `browse_compare` |
 | [browse-monitor](browse-monitor/) | Track evolving topics over time, diff against prior knowledge | `browse_session_*` |
 | [browse-cite](browse-cite/) | Generate properly formatted citations (APA/MLA) with authority scores | `browse_answer` (thorough) |
-| [browse-anti-hallucination](browse-anti-hallucination/) | Reduce LLM hallucinations through evidence-backed prompt engineering | `browse_answer` + `browse_compare` |
+| [browse-clarity](browse-clarity/) | Anti-hallucination answer engine — fast LLM-only or verified with web fusion | `browse_clarity` |
 
 ## Prerequisites
 
@@ -86,7 +86,7 @@ Open-source research infrastructure for AI agents. Every answer goes through a v
 5. **Cross-Source Consensus** — Claims in multiple sources get higher scores
 6. **Contradiction Detection** — Conflicting claims are flagged
 7. **Domain Authority** — 10,000+ domains scored with Bayesian dynamic blending
-8. **Confidence Score** — 7-factor evidence-based score (not LLM self-assessed)
+8. **Confidence Score** — 8-factor evidence-based score (not LLM self-assessed)
 
 Available as [MCP server](https://www.npmjs.com/package/browseai-dev), [REST API](https://browseai.dev/docs), and [Python SDK](https://pypi.org/project/browseaidev/).
 
