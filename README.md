@@ -24,7 +24,7 @@ Or manually copy any skill folder into your agent's skills directory (e.g., `~/.
 | [browse-compare-claims](browse-compare-claims/) | Settle factual disputes — evidence-backed vs raw LLM side-by-side | `browse_compare` |
 | [browse-monitor](browse-monitor/) | Track evolving topics over time, diff against prior knowledge | `browse_session_*` |
 | [browse-cite](browse-cite/) | Generate properly formatted citations (APA/MLA) with authority scores | `browse_answer` (thorough) |
-| [browse-clarity](browse-clarity/) | Anti-hallucination answer engine — fast LLM-only or verified with web fusion | `browse_clarity` |
+| [browse-clarity](browse-clarity/) | Anti-hallucination answer engine — three modes: prompt, answer, verified | `browse_clarity` |
 
 ## Prerequisites
 

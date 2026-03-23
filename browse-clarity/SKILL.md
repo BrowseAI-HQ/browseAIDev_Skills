@@ -1,11 +1,11 @@
 ---
 name: browse-clarity
-description: Anti-hallucination answer engine — generates answers with reduced hallucinations. Fast LLM-only mode or verified mode with web fusion. Use when accuracy matters.
+description: Anti-hallucination answer engine — three modes: prompt (enhanced prompts for your own LLM), answer (LLM with grounding), verified (LLM + web fusion). Use when accuracy matters.
 ---
 
 # BrowseAI Dev — Clarity Anti-Hallucination Answer Engine
 
-Use this skill when the user needs answers with reduced hallucinations. Clarity is an answer engine — it calls the LLM with anti-hallucination techniques and returns structured answers with claims, confidence, and risk analysis.
+Use this skill when the user needs answers with reduced hallucinations. Clarity is an answer engine — it analyzes prompts, applies anti-hallucination techniques, and returns structured answers with claims, confidence, and risk analysis.
 
 ## When to Use
 
@@ -13,7 +13,8 @@ Use this skill when the user needs answers with reduced hallucinations. Clarity 
 - User says "make this more accurate", "reduce hallucinations", "stop making things up"
 - User is building an AI agent or pipeline that needs factual accuracy
 - User wants to verify LLM-generated content before publishing
-- User wants a fast answer without internet (LLM-only mode)
+- User wants enhanced prompts for their own LLM (prompt mode)
+- User wants a fast answer without internet (answer mode)
 - User wants the best of both LLM reasoning and web evidence (verified mode)
 - Any task where factual accuracy is more important than creativity
 
@@ -32,16 +33,39 @@ Install BrowseAI Dev MCP server:
 }
 ```
 
-## Two Modes
+## Three Modes
 
-### Mode 1: Fast LLM-Only (`verify: false`)
+### Mode 1: Prompt Only (`mode: "prompt"`)
 
-No internet required. Uses anti-hallucination grounding techniques to get a better answer from the LLM alone.
+Returns only the enhanced system + user prompts with anti-hallucination techniques baked in. **No LLM call, no internet.** Use this when your own LLM (e.g. Claude) should answer using the enhanced prompts.
 
 ```
 browse_clarity({
   prompt: "What are the main causes of antibiotic resistance?",
-  verify: false
+  mode: "prompt"
+})
+```
+
+**When to use:** You want your own LLM (Claude, GPT, etc.) to answer, but with anti-hallucination grounding. Fastest mode — only runs the analysis step.
+
+**Response includes:**
+- `systemPrompt` — Anti-hallucination system prompt with technique instructions
+- `userPrompt` — Rewritten user prompt with grounding cues
+- `techniques` — Which anti-hallucination techniques were selected
+- `risks` — Identified hallucination risks for this query
+- `intent` — Auto-detected intent type
+- `answer` — Empty string (no LLM was called)
+- `confidence` — 0 (no answer to score)
+- `mode: "prompt"`
+
+### Mode 2: LLM Answer (`mode: "answer"`, default)
+
+Calls LLM with anti-hallucination instructions, returns a grounded answer with extracted claims. No internet required.
+
+```
+browse_clarity({
+  prompt: "What are the main causes of antibiotic resistance?",
+  mode: "answer"
 })
 ```
 
@@ -53,16 +77,17 @@ browse_clarity({
 - `confidence` — Heuristic score (0.45–0.65 range, since no web verification)
 - `techniques` — Which anti-hallucination techniques were applied
 - `risks` — Identified hallucination risks for this query
-- `verified: false`
+- `systemPrompt` / `userPrompt` — The enhanced prompts used
+- `mode: "answer"`
 
-### Mode 2: Verified with Web Fusion (`verify: true`)
+### Mode 3: Verified with Web Fusion (`mode: "verified"`)
 
 Runs LLM answer + BrowseAI Dev's browse pipeline **in parallel**, then fuses the best of both.
 
 ```
 browse_clarity({
   prompt: "What are the main causes of antibiotic resistance?",
-  verify: true
+  mode: "verified"
 })
 ```
 
@@ -77,7 +102,9 @@ browse_clarity({
 - `sources[]` — Web sources with URLs, quotes, authority scores
 - `confidence` — Evidence-based score adjusted by confirmation/penalty
 - `contradictions[]` — Any conflicting claims found
-- `verified: true`
+- `mode: "verified"`
+
+> **Legacy:** `verify: true` is equivalent to `mode: "verified"`. `verify: false` is equivalent to `mode: "answer"`.
 
 ## Anti-Hallucination Techniques
 
@@ -93,18 +120,26 @@ Clarity applies these techniques automatically based on query analysis:
 
 ## Workflow
 
-### Option A: Quick Grounded Answer (No Internet)
+### Option A: Enhanced Prompts for Your Own LLM
 
 ```
-browse_clarity({ prompt: "Explain quantum entanglement", verify: false })
+browse_clarity({ prompt: "Explain quantum entanglement", mode: "prompt" })
+```
+
+Use the returned `systemPrompt` and `userPrompt` to call your own LLM with anti-hallucination grounding.
+
+### Option B: Quick Grounded Answer (No Internet)
+
+```
+browse_clarity({ prompt: "Explain quantum entanglement", mode: "answer" })
 ```
 
 Present the answer with techniques used and any identified risks.
 
-### Option B: Verified Answer (Best Accuracy)
+### Option C: Verified Answer (Best Accuracy)
 
 ```
-browse_clarity({ prompt: "Explain quantum entanglement", verify: true })
+browse_clarity({ prompt: "Explain quantum entanglement", mode: "verified" })
 ```
 
 Present the fused answer. Highlight:
@@ -113,14 +148,14 @@ Present the fused answer. Highlight:
 - **LLM-only claims** (amber) — unverified, treat with caution
 - Any contradictions between LLM and sources
 
-### Option C: Verify Your Own Output
+### Option D: Verify Your Own Output
 
 Before presenting generated content to the user, run it through Clarity:
 
 ```
 browse_clarity({
   prompt: "Is it true that [your generated claim]? What does the evidence say?",
-  verify: true
+  mode: "verified"
 })
 ```
 
@@ -141,7 +176,8 @@ browse_clarity({
 
 ## Tips
 
-- Use `verify: false` for speed, `verify: true` for accuracy
+- Use `mode: "prompt"` when you want your own LLM to answer with anti-hallucination grounding
+- Use `mode: "answer"` for speed, `mode: "verified"` for accuracy
 - In verified mode, focus on `confirmed` claims — they're the most reliable
 - `llm`-origin claims without web backing may be hallucinated — caveat them
 - Low confidence doesn't mean wrong — it may mean limited web evidence available
