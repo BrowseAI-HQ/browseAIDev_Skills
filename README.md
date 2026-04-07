@@ -25,6 +25,7 @@ Or manually copy any skill folder into your agent's skills directory (e.g., `~/.
 | [browse-monitor](browse-monitor/) | Track evolving topics over time, diff against prior knowledge | `browse_session_*` |
 | [browse-cite](browse-cite/) | Generate properly formatted citations (APA/MLA) with authority scores | `browse_answer` (thorough) |
 | [browse-clarity](browse-clarity/) | Anti-hallucination answer engine — three modes: prompt, answer, verified | `browse_clarity` |
+| [browse-verify-document](browse-verify-document/) | Fact-check an entire document — extracts every claim, verifies each, returns A-F grade | `browse_verify_document` |
 
 ## Prerequisites
 
